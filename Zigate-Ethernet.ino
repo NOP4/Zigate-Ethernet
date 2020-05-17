@@ -1,3 +1,7 @@
+/*
+ * Zigate-Ethernet
+ */
+
 #define USE_WDT
 
 //#include <SoftwareSerial.h> // Disabled for Arduino
