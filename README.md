@@ -6,3 +6,5 @@ Matériel requis : Arduino + Level Shifter + Shield W5100 ou ESP8266 + Shield W5
 Dans domoticz, changer simplement le modèle de zigate dans le paramétrage du matériel. Passer de USB à WiFi.
 
 Code encore non testé.
+
+Code inspiré de : https://github.com/fairecasoimeme/ZiGate/tree/master/Module%20WiFi/Firmware/v1.3
