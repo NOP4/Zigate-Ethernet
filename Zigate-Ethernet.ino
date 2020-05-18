@@ -12,7 +12,7 @@ byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };  // Set your device MAC Add
 IPAddress ip(192,168,1,177);                          // Set your IP address. Best to pin IP address on your firewall/router.
                                                       // If not possible, choose an IP outside of DHCP range.
 
-EthernetServer server(80);
+EthernetServer server(9999);
 EthernetClient client;
 
 #define BAUD_RATE 115200
