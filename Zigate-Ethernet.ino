@@ -30,6 +30,10 @@ void setup(void)
 
   // Start Ethernet connection and web server
   Ethernet.begin(mac, ip);
+
+  // Give the Ethernet shield a second to initialize:
+  delay(1000);
+
   server.begin();
 }
 
