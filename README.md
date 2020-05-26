@@ -34,3 +34,7 @@ Conversion d'une Zigate en version Ethernet.
 Code encore non testé.
 
 <i>Code inspiré de https://github.com/fairecasoimeme/ZiGate/tree/master/Module%20WiFi/Firmware/v1.3</i>
+
+<hr>
+
+<img src="Zigate Ethernet.png" width="800">
