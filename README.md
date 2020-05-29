@@ -37,4 +37,9 @@ Code encore non testé.
 
 <hr>
 
-<img src="Zigate Ethernet.png" width="800">
+<img src="Zigate Ethernet Arduino.png" width="800">
+
+<hr>
+
+<img src="Zigate Ethernet WemosD1mini.png" width="800">
+
