@@ -1,12 +1,15 @@
 /*
- * Zigate-Ethernet
+ * Zigate-Ethernet (Arduino & ESP8266 Wemos)
  */
-
-#define USE_WDT
 
 //#include <SoftwareSerial.h> // Disabled for Arduino
 #include <Ethernet.h>
-#include <avr/wdt.h>
+#if defined(__AVR__)
+  #include <avr/wdt.h>
+#endif
+#if defined(ESP8266)
+  #include <ESP8266WiFi.h>
+#endif
 
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };  // Set your device MAC Address. Must be unique on your network.
 IPAddress ip(192,168,1,177);                          // Set your IP address. Best to pin IP address on your firewall/router.
@@ -21,32 +24,34 @@ EthernetClient client;
 
 void setup(void)
 {  
-#ifdef USE_WDT
-  wdt_enable(1000);
-#endif
-  
+  #ifdef USE_WDT
+    wdt_enable(1000);
+  #endif
+
   Serial.begin(115200);
 //  Serial.swap();  // Disabled for Arduino
 
-  // Start Ethernet connection and web server
-  Ethernet.begin(mac, ip);
+  #if defined(ESP8266)
+    WiFi.mode(WIFI_OFF);  //Disable WiFi
+  #endif
 
-  // Give the Ethernet shield a second to initialize:
-  delay(1000);
-
+  delay(500); // Give the Ethernet shield a moment to power on
+  Ethernet.begin(mac, ip);  // Start Ethernet connection and web server
+  delay(1000);  // Give the Ethernet shield a second to initialize
   server.begin();
 }
 
 void loop(void)
 {
+  yield();  //Reset WDT
+  #if defined(__AVR__)
+    wdt_reset(); //Reset WDT
+  #endif
+
   size_t bytes_read;
   uint8_t net_buf[BUFFER_SIZE];
   uint8_t serial_buf[BUFFER_SIZE];
   
-  #ifdef USE_WDT
-    wdt_reset();
-  #endif
-
   // Check if a client has connected
   client = server.available();
   if (!client) {
